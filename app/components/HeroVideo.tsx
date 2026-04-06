@@ -106,7 +106,7 @@ export default function HeroVideo() {
     >
       {/* In-page video — always mounted so it buffers; fades in after overlay leaves */}
       <video
-        src="/videos/Henrysroom_HeroVideo.mp4"
+        src="https://res.cloudinary.com/dclrk2ptl/video/upload/v1775501734/Henrysroom_HeroVideo_df5cli.mp4"
         autoPlay
         muted
         loop
@@ -136,7 +136,7 @@ export default function HeroVideo() {
           }}
         >
           <video
-            src="/videos/Henrysroom_HeroVideo.mp4"
+            src="https://res.cloudinary.com/dclrk2ptl/video/upload/v1775501734/Henrysroom_HeroVideo_df5cli.mp4"
             autoPlay
             muted
             loop
