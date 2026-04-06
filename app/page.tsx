@@ -1,153 +1,77 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-
-const pastWork = [
-  { label: "SUPERPOWER", href: "#" },
-  { label: "MARK", href: "#" },
-  { label: "SEP — USC FLAGSHIP INCUBATOR", href: "#" },
-  { label: "SNEAKERS", href: "#" },
-];
-
-const socials = [
-  { label: "IG", href: "#" },
-  { label: "X", href: "#" },
-  { label: "EMAIL", href: "#" },
-];
-
-const BIRTH_DATE = new Date(2004, 7, 4); // August 4, 2004
-const YEAR_MS = 365.25 * 24 * 60 * 60 * 1000;
-
-function getAge() {
-  return ((Date.now() - BIRTH_DATE.getTime()) / YEAR_MS).toFixed(20);
-}
-
-function HoverWord({ children, href }: { children: React.ReactNode; href?: string }) {
-  const cls = "text-[#8c8c8c] group-hover:text-[#111] transition-colors";
-  if (href) return <a href={href} className={cls}>{children}</a>;
-  return <span className={cls}>{children}</span>;
-}
+import WorkCard from "./components/WorkCard"
+import MusingCard from "./components/MusingCard"
+import HeroVideo from "./components/HeroVideo"
+import { workProjects } from "@/data/work"
+import { musings } from "@/data/musings"
 
 export default function Home() {
-  const [age, setAge] = useState(getAge);
-  const rafRef = useRef<number>(0);
-
-  useEffect(() => {
-    function tick() {
-      setAge(getAge());
-      rafRef.current = requestAnimationFrame(tick);
-    }
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, []);
-
   return (
-    <main className="flex flex-col px-[10vw] pb-16">
-      {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="py-[13.5vw]">
-        <div className="flex items-baseline flex-wrap">
-          <span className="font-[500] text-[6.875vw] leading-[1.515] tracking-[-0.0175em] whitespace-nowrap">
-            Henry is designing&nbsp;
-          </span>
-          <span className="font-[500] text-[6.875vw] leading-[1.515] tracking-[-0.0175em]">
-            health
-          </span>
-          <span className="font-[500] text-[6.875vw] leading-[1.515] tracking-[-0.0175em]">
-            .
-          </span>
-        </div>
+    <main>
+      {/* ── Hero video ───────────────────────────────────────────── */}
+      <section className="px-6 py-12 md:px-12 lg:px-36">
+        <HeroVideo />
       </section>
 
-      {/* ── Info ─────────────────────────────────────────────── */}
-      <section className="flex flex-col gap-12">
-        {/* Age counter */}
-        <p className="text-[16px] tracking-[0.05em] leading-[1.3] tabular-nums">
-          {age}
-        </p>
+      {/* ── Henry's Room ─────────────────────────────────────────── */}
+      <section id="about" className="px-6 py-12 md:px-12 lg:px-32 flex flex-col items-center gap-8 max-w-[2000px] mx-auto text-center">
+        <h1 className="type-display text-center">A collection of design, work, & musings that make up me.</h1>
 
-        {/* Two-column body */}
-        <div className="flex gap-[96px]">
-          {/* Left: bio */}
-          <div className="flex-1 flex flex-col gap-6 text-[16px] tracking-[0.05em] leading-[1.3]">
-            <div className="flex flex-col gap-2">
-              <p className="text-[#111]">CURRENTLY</p>
-              <p className="group text-[#8c8c8c]">
-                I study at the{" "}
-                <HoverWord href="https://iovine-young.usc.edu/">USC Iovine and Young Academy</HoverWord>
-                , tinkering with projects related to health, peptides,
-                manufacturing, and AI.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <p className="text-[#111]">PREVIOUSLY</p>
-              <p className="group text-[#8c8c8c]">
-                I designed at <HoverWord href="https://superpower.com/">Superpower</HoverWord>, the greatest
-                consumer health company.
-              </p>
-              <p className="group text-[#8c8c8c]">
-                I co-founded <HoverWord href="https://mark.engineering/">Mark</HoverWord>, an AI bookmark that
-                garnered 10M views on X. My best friend Eason is still working
-                on it, currently in manufacturing!
-              </p>
-              <p className="group text-[#8c8c8c]">
-                I led USC's flagship entrepreneurship society,{" "}
-                <HoverWord href="https://uscsep.com/">SEP</HoverWord>, and helped incubate 7 startups.
-              </p>
-              <p className="group text-[#8c8c8c]">
-                I grew up in Sydney, Australia, the happiest place in the world.
-                I built a 6 figure{" "}
-                <HoverWord href="https://quilt-eater-d49.notion.site/Sneaker-Business-32ea31bc001080558d8feeed7a0fcdd9?source=copy_link">sneaker business</HoverWord> when I was in high
-                school.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <p className="text-[#111]">RECENTLY</p>
-              <p className="text-[#8c8c8c]">
-                DJing, making films, reading, training.
-              </p>
-            </div>
-          </div>
-
-          {/* Right: portfolio */}
-          <div className="flex-1 flex flex-col gap-2">
-            <a
-              href="https://quilt-eater-d49.notion.site/henryswork?source=copy_link"
-              className="text-[16px] tracking-[0.05em] uppercase leading-[1.5] text-[#111]"
-            >
-              MY WORK // portfolio
-            </a>
-            <div className="flex flex-col gap-1">
-              {pastWork.map(({ label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  className="text-[16px] tracking-[0.05em] uppercase leading-[1.5] text-[#8c8c8c] hover:text-[#111] transition-colors"
-                >
-                  {label}
-                </a>
-              ))}
-              <span className="text-[16px] tracking-[0.05em] uppercase leading-[1.5] text-[#8c8c8c] hover:text-[#111] transition-colors cursor-pointer">
-                More
-              </span>
-            </div>
-          </div>
+        <div className="flex flex-col gap-4 max-w-[550px] text-center">
+      
+          <p className="type-body">
+            I currently study at the USC Iovine and Young Academy, tinkering
+            with projects related to health, peptides, manufacturing, and AI.
+          </p>
+          <p className="type-body">
+            I grew up in Sydney, Australia, the happiest place in the world. In my free time I'm reading, DJing, making films, and training.
+          </p>
+          
         </div>
 
-        {/* Footer: social links */}
-        <div className="flex gap-6">
-          {socials.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href}
-              className="text-[16px] tracking-[0.05em] uppercase leading-[1.5] text-[#111] hover:text-[#8c8c8c] transition-colors"
-            >
-              {label}
-            </a>
+        
+      </section>
+
+      {/* ── Work ─────────────────────────────────────────────────── */}
+      <section id="work" className="px-6 py-16 md:px-12 lg:px-20 flex flex-col gap-6">
+        <div className="flex items-center gap-4">
+          <span className="type-label">Work</span>
+          <span className="type-caption">View All</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-16">
+          {workProjects.map((project) => (
+            <WorkCard key={project.slug} project={project} />
           ))}
         </div>
       </section>
+
+      
+      {/* ── Musings ──────────────────────────────────────────────── */}
+      <section id="musings" className="px-6 py-12 md:px-12 lg:px-20 flex flex-col gap-6">
+        <div className="flex items-center gap-4">
+          <span className="type-label">Musings</span>
+          <span className="type-caption">View All</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-x-8 gap-y-1">
+          {musings.map((musing) => (
+            <MusingCard key={musing.slug} musing={musing} />
+          ))}
+        </div>
+      </section>
+
+      {/* ── Footer ───────────────────────────────────────────────── */}
+      <footer id="contact" className="px-6 py-24 md:px-12 lg:px-20 flex items-end justify-between">
+        <div className="flex items-center gap-4">
+          <a href="https://x.com/" className="type-body hover:opacity-60 transition-opacity">
+            X
+          </a>
+          <a href="mailto:" className="type-body hover:opacity-60 transition-opacity">
+            EMAIL
+          </a>
+        </div>
+        <p className="type-body">2026 HENRY YIN.</p>
+      </footer>
     </main>
-  );
+  )
 }

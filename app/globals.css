@@ -2,6 +2,23 @@
 
 @theme inline {
   --font-sans: var(--font-saans);
+
+  /* Colors */
+  --color-ink: #333333;
+  --color-ink-muted: #a1a1a1;
+  --color-surface: #ffffff;
+  --color-surface-card: #e1e1e1;
+  --color-surface-detail: #f4f4f4;
+
+  /* Spacing */
+  --spacing-page-x: 128px;
+  --spacing-section-y: 96px;
+  --spacing-nav-y: 24px;
+  --spacing-hero-y: 64px;
+  --spacing-card-gap: 12px;
+  --spacing-card-inner: 20px;
+  --spacing-card-meta: 8px;
+  --spacing-row-gap: 96px;
 }
 
 * {
@@ -10,4 +27,85 @@
 
 body {
   font-family: var(--font-saans), sans-serif;
+  color: #333333;
+  background: #ffffff;
+}
+
+/* ── Typography system ─────────────────────────────────────────────────── */
+/* Must be inside @layer utilities so Tailwind v4's PostCSS pipeline
+   includes them in the output bundle. */
+
+@layer utilities {
+  /* 48px · Medium · tracking 0.08em · #333 — only "HENRY'S ROOM" */
+  .type-display {
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: normal;
+    letter-spacing: -0.02em;
+    line-height: normal;
+    color: #333333;
+  }
+
+  /* 24px · Medium · tracking 0.08em · #333 — only "HENRY'S ROOM" in nav */
+  .type-nav-brand {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: normal;
+    line-height: normal;
+    color: #333333;
+  }
+
+  /* 16px · Medium · 20px line-height · tracking normal · #333 */
+  .type-label {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: normal;
+    color: #333333;
+  }
+
+  /* 16px · Regular · 20px line-height · tracking normal · #333 */
+  .type-body {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: normal;
+    color: #333333;
+  }
+
+  /* 16px · Regular · 20px line-height · tracking normal · #A1A1A1 */
+  .type-caption {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: normal;
+    color: #a1a1a1;
+  }
+
+  /* ── Lightbox animation ─────────────────────────────────────── */
+  @keyframes lightbox-in {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* ── Page load animation ─────────────────────────────────────── */
+  .page-loading {
+    opacity: 0;
+    filter: blur(12px);
+    transition: opacity 0.8s ease, filter 0.8s ease;
+    will-change: filter, opacity;
+  }
+
+  .page-loading.page-loaded {
+    opacity: 1;
+    filter: blur(0px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page-loading {
+      opacity: 1;
+      filter: none;
+      transition: none;
+    }
+  }
 }
