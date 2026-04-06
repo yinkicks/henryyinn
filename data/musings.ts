@@ -1,11 +1,18 @@
+export type MusingSection = {
+  heading: string
+  bullets: string[]
+}
+
 export type Musing = {
   slug: string
   title: string
   subtitle: string
   year: string
+  date?: string // e.g. "7 February 2025"
   coverImage: string // relative to /public, e.g. "/images/musings/osmonds-pho-cover.jpg"
-  // Detail page fields
-  body: string[] // each string is a bullet point / paragraph
+  // Detail page fields — use sections for structured rule/heading content, body for plain paragraphs
+  body: string[]
+  sections?: MusingSection[]
 }
 
 export const musings: Musing[] = [
@@ -14,8 +21,11 @@ export const musings: Musing[] = [
     title: "Osmond's Pho",
     subtitle: "Finding you. Multiverse of Henry. Hunger.",
     year: "2025",
-    coverImage: "/images/musings/osmonds-pho-cover.jpg",
+    date: "7 February 2025",
+    coverImage: "/images/musings/osmonds-pho.jpg",
     body: [
+      `This was a collection of notes to myself after having transformative dinner with my friend, Osmond. I felt lost during that time. I felt hungry to attack the world but had no idea how to even begin. I looked up to Osmond. This experience gave me clarity. I sent emails, started Mark, and my rhythm of life changed soon after.`,
+      `---`,
       `there are kids in gaza who are getting exploded. while we have so much privilege here @ usc living the best life. we're not reaching our full potential. people are too fine with being "normal".`,
       `never listen to anyone's advice. everyone is reflecting their own life and pushing their own life to change your own course of action. no one knows you except you.`,
       `action creates information. information creates direction.`,
@@ -46,19 +56,173 @@ export const musings: Musing[] = [
     ],
   },
   {
-    slug: "solitude",
-    title: "Solitude",
-    subtitle: "The ability to find peace on your own.",
+    slug: "rules-for-a-knight",
+    title: "Rules for a Knight",
+    subtitle: "Peace, Pride, Hard-work, Kindness, Love",
     year: "2025",
-    coverImage: "/images/musings/solitude-cover.jpg",
+    date: "15 March 2025",
+    coverImage: "/images/musings/rules-for-a-knight-cover.jpg",
     body: [],
-  },
-  {
-    slug: "approaching-the-summer",
-    title: "Approaching the Summer",
-    subtitle: "Knowing and understanding the future.",
-    year: "2025",
-    coverImage: "/images/musings/approaching-the-summer-cover.jpg",
-    body: [],
-  },
+    sections: [
+      {
+
+        bullets: [
+          "A letter from the 15th century knight, Sir Thomas Lemuel Hawke, to his children before his death. A collection of reflections and guiding principles for living a virtuous and meaningful life.",
+    
+        ],
+      },
+      {
+        heading: "1: Solitude",
+        bullets: [
+          "Silence is a crucial tool to hear our inner voice and find wisdom and clarity.",
+          "Create time away from the distractions of the world. Just as you cannot see your reflection in troubled water, you cannot see it with a troubled soul.",
+        ],
+      },
+      {
+        heading: "2: Humility",
+        bullets: [
+          "Isn't about self-deprecation. Must have realistic and balanced view of oneself.",
+          "You are better than no one. No one is better than you.",
+          `"Never announce that you are a knight, simply behave as one."`,
+        ],
+      },
+      {
+        heading: "3: Gratitude",
+        bullets: [
+          `"The only intelligent response to the ongoing gift of life is gratitude."`,
+          `"The simple joys are the great ones. Pleasure is not complicated."`,
+        ],
+      },
+      {
+        heading: "4: Pride",
+        bullets: [
+          "Never attempt to diminish yourself to make others feel more comfortable. If our self-worth is low, it affects everything we do.",
+          `"We show others the most respect by offering the best of ourselves."`,
+          "Deep focus — hard work [pride comes along the way]",
+        ],
+      },
+      {
+        heading: "5: Cooperation",
+        bullets: [
+          `Story of Lemuel, envious of another squire Roan's skills. Grandfather asks, "is it not possible that you both can be outstanding?"`,
+          "2 outcomes of comparing yourself: vanity or bitterness. Both are without value.",
+          `"We must live and work together as brothers or perish together as fools."`,
+        ],
+      },
+      {
+        heading: "6: Friendship",
+        bullets: [
+          "True friendship is forged in daily workings, not grand gestures.",
+          "It may be easy to be supportive when a friend is hurt. It is more difficult to be wholeheartedly supportive when extreme good fortune befalls your friend and not you.",
+        ],
+      },
+      {
+        heading: "7: Forgiveness",
+        bullets: [
+          "Look for the best in others and yourself.",
+          "Forgive and move on. Brings you and others peace.",
+        ],
+      },
+      {
+        heading: "8: Honesty",
+        bullets: [
+          `Do not fear suffering. The strongest steel is forged in fire. "The facts are always friendly".`,
+          "Falsehood comes from darkness and hides us from others and our soul.",
+        ],
+      },
+      {
+        heading: "9: Courage",
+        bullets: [
+          "Everything is aided by an awareness of breath. Breathe for courage.",
+          "When you are scared, don't do it for yourself. Do it for someone else.",
+          `"Anything that gives light must endure burning."`,
+        ],
+      },
+      {
+        heading: "10: Grace",
+        bullets: [
+          "Ability to accept change.",
+          "Beauty fades. Inner workings is core.",
+          "Approaching life: positive — positive & negative — negative.",
+        ],
+      },
+      {
+        heading: "11: Patience",
+        bullets: [
+          `There is no once-in-a-lifetime opportunity. "A hurried mind is an addled mind".`,
+          "The story of the Chinese farmer. No such thing as good/bad. Events are simply events.",
+        ],
+      },
+      {
+        heading: "12: Justice",
+        bullets: [
+          "Every true knight fights for human dignity & justice at all times.",
+          `"A knight sets out to illuminate the darkness in society, not from its leaves but from its roots."`,
+        ],
+      },
+      {
+        heading: "13: Generosity",
+        bullets: [
+          `Possessions are distractions from the real work of a knight's life. "A lion doesn't own anything at all, yet we all know his power."`,
+          "Starving boy gives bread to his younger siblings. Admiration, not pity.",
+        ],
+      },
+      {
+        heading: "14: Discipline",
+        bullets: [
+          `"You will perform as you practice."`,
+          `"Don't save anything for the walk home."`,
+          `"Discipline, structure, and order, you will find there is freedom" & "happiness is the result of a life lived with purpose."`,
+          `"If you are concentrating on the results of your actions, you are not dedicated to your task."`,
+        ],
+      },
+      {
+        heading: "15: Dedication",
+        bullets: [
+          `"The anvil outlasts the hammer."`,
+          `"How we handle times of peace and calm will determine our behaviour in moments of crisis."`,
+          "To attain great wisdom, a knight must live a long life.",
+        ],
+      },
+      {
+        heading: "16: Speech",
+        bullets: [
+          "Do not speak ill of others.",
+          "Words have meaning. Do not misuse them.",
+        ],
+      },
+      {
+        heading: "17: Faith",
+        bullets: [
+          "Some things in life are so beautiful that they should not be talked about. They can only be experienced.",
+          `"Golden rule: do unto others as you would have them do unto you."`,
+        ],
+      },
+      {
+        heading: "18: Equality",
+        bullets: [
+          `"Every knight holds human equality as an unwavering truth."`,
+        ],
+      },
+      {
+        heading: "19: Love",
+        bullets: [
+          `"Love is the end goal. It is the music of our lives. There is no obstacle that enough love cannot move."`,
+          "If you are unable to control your anger, keep your distance and mouth shut until you can.",
+          `"There is no finite amount of love."`,
+          "Love is not wild, grand, overwhelming — it is healthy, honest, and wholesome.",
+          `As Lemuel's relationship grew slowly and subtly, they will "always be friends" and will never "fall out of love".`,
+        ],
+      },
+      {
+        heading: "20: Death",
+        bullets: [
+          `"A knight concerns himself with the gratitude for the life he has been given."`,
+          "He does not fear death as the work one knight begins, others may finish.",
+          "Sand castle story: His kids fought and stepped over each other's castles but eventually moved on to swimming, forgot, went home, and the rain washed the castles back to the surf.",
+          `"Please be kind to one another."`,
+        ],
+      },
+    ],
+  }
 ]

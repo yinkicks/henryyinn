@@ -189,15 +189,20 @@ export const workProjects: WorkProject[] = [
       {
         kind: "text",
         heading: "THE STORY",
-        body: "When I wasn't waking up early to buy the latest Jordans, I was negotiating with strangers online to sell them. By the time I entered 11th grade, competition in the resale industry was booming (the resale industry is $11.5Bn today). My friend Fred and I wanted our brand, Kick’d Out, to stand out in a landscape dominated by undercutting and Facebook testimonials. We aimed to present Kick’d Out as legitimate and professional so we reached out to our buddy “Booey” who recently opened a vintage clothing store. After countless negotiations about profit-sharing and risks, Booey agreed to collaborate. With only ten days to prepare, I handled the media design, legal contracts, and operations while Fred focused on marketing. We worked over Christmas and New Years and commuted four hours daily. We successfully launched the event.   We grossed $12.7k and gained over 5,000 followers across platforms in those 2 weeks, marking the pop-up a success. ",
+        body: "When I wasn't waking up early to buy the latest Jordans, I was negotiating with strangers online to sell them.\n\nBy the time I entered 11th grade, competition in the resale industry was booming (the resale industry is $11.5Bn today). My friend Fred and I wanted our brand, Kick’d Out, to stand out in a landscape dominated by undercutting and Facebook testimonials. We aimed to present Kick’d Out as legitimate and professional so we reached out to our buddy “Booey” who recently opened a vintage clothing store.\n\nAfter countless negotiations about profit-sharing and risks, Booey agreed to collaborate. With only ten days to prepare, I handled the media design, legal contracts, and operations while Fred focused on marketing. We worked over Christmas and New Years and commuted four hours daily. We successfully launched the event.\n\nWe grossed $12.7k and gained over 5,000 followers across platforms in those 2 weeks, marking the pop-up a success. ",
       },
       {
         kind: "gallery",
+        layout: "three-col",
         images: [
           "/images/work/sneaker-business-1.jpg",
           "/images/work/sneaker-business-2.jpg",
           "/images/work/sneaker-business-3.jpg",
         ],
+      },
+      {
+        kind: "video",
+        src: "/videos/SneakerBusiness_video.mp4",
       },
     ],
   },

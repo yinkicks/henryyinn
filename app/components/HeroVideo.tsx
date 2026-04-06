@@ -8,7 +8,10 @@ let heroHasPlayed = false
 
 export default function HeroVideo() {
   // Read before setting — first mount sees false (hard load), later mounts see true (client nav)
+  // Guard against SSR: heroHasPlayed is module-level and persists across server requests,
+  // so always return false on the server to keep the initial render consistent with the client.
   const [isClientNav] = useState(() => {
+    if (typeof window === "undefined") return false
     const wasPlayed = heroHasPlayed
     heroHasPlayed = true
     return wasPlayed

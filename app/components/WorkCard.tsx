@@ -17,7 +17,7 @@ export default function WorkCard({ project }: { project: WorkProject }) {
       </div>
 
       {/* Meta */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         <p className="type-label">{project.title}</p>
         <p className="type-body">{project.subtitle}</p>
         <div className="flex items-center gap-2">

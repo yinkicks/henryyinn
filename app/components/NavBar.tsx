@@ -71,7 +71,7 @@ export default function NavBar() {
                 key={label}
                 href={`/#${href}`}
                 onClick={(e) => handleNavClick(e, href)}
-                className="type-label px-2 py-2 bg-white/10 backdrop-blur-[200px] hover:bg-[#f5f5f5]/100 transition-colors cursor-pointer"
+                className="type-label px-2 py-2 bg-white/10 backdrop-blur-[200px] hover:bg-[#f5f5f5]/100 transition-colors cursor-pointer rounded-[2px]"
               >
                 {label}
               </a>

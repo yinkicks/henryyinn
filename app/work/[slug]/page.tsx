@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 import { workProjects } from "@/data/work"
 import type { WorkSection } from "@/data/work"
 import WorkGallery from "@/app/components/WorkGallery"
+import BlurReveal from "@/app/components/BlurReveal"
 
 export function generateStaticParams() {
   return workProjects.map((p) => ({ slug: p.slug }))
@@ -48,79 +49,85 @@ export default async function WorkDetailPage({ params }: { params: Promise<{ slu
 
   return (
     <main>
-      {/* ── Header ───────────────────────────────────────────────── */}
-      <section className="px-6 py-16 md:px-12 flex flex-col items-center text-center">
-  {/* Add mb-8 to increase space below this element only */}
-  <span className="type-caption mb-4">Work</span> 
-  
-  <h1 className="type-display text-center">
-    {project.title}
-  </h1>
-  
-  {/* The title and paragraph remain close together */}
-  <p className="type-body max-w-[500px] text-center mt-4">{project.description}</p>
-</section>
+      {/* -- Header -------------------------------------------------- */}
+      <BlurReveal>
+        <section className="px-6 py-16 md:px-12 flex flex-col items-center text-center">
+          <span className="type-caption mb-4">Work</span>
+          <h1 className="type-display text-center">{project.title}</h1>
+          <p className="type-body max-w-[500px] text-center mt-4">{project.description}</p>
+        </section>
+      </BlurReveal>
 
+      {/* -- Hero image ---------------------------------------------- */}
+      <BlurReveal>
+        <section className="px-6 pb-12 md:px-12 lg:px-20">
+          <div className="bg-surface-card h-64 md:h-96 lg:h-[480px] overflow-hidden w-full md:w-2/4 mx-auto rounded-[4px]">
+            {project.heroImage && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={project.heroImage}
+                alt={project.title}
+                className="w-full h-full object-cover"
+              />
+            )}
+          </div>
+        </section>
+      </BlurReveal>
 
-      {/* ── Hero image ───────────────────────────────────────────── */}
-      <section className="px-6 pb-12 md:px-12 lg:px-20">
-        <div className="bg-surface-card h-64 md:h-96 lg:h-[480px] overflow-hidden w-2/4 mx-auto rounded-[4px]">
-          {project.heroImage && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={project.heroImage}
-              alt={project.title}
-              className="w-full h-full object-cover"
-            />
-          )}
-        </div>
-      </section>
-
-      {/* ── Content sections ─────────────────────────────────────── */}
+      {/* -- Content sections ---------------------------------------- */}
       {project.sections.map((section, i) => {
         if (section.kind === "gallery") {
           return (
-            <section key={i} className="px-6 py-12 md:px-12 lg:px-20">
-              <WorkGallery section={section} />
-            </section>
+            <BlurReveal key={i}>
+              <section className="px-6 py-12 md:px-12 lg:px-20">
+                <WorkGallery section={section} />
+              </section>
+            </BlurReveal>
           )
         }
 
         if (section.kind === "video") {
           return (
-            <section key={i} className="px-6 py-12 md:px-12 lg:px-20">
-              <video
-                src={section.src}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-auto"
-              />
-            </section>
+            <BlurReveal key={i}>
+              <section className="px-6 py-8 md:px-12 lg:px-20">
+                <video
+                  src={section.src}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-auto rounded-sm overflow-hidden"
+                />
+              </section>
+            </BlurReveal>
           )
         }
 
         return (
-          <section key={i} className="px-6 py-8 md:px-12 flex flex-col items-center">
-            <div className="max-w-[728px] w-full">
-              <TextSection section={section} />
-            </div>
-          </section>
+          <BlurReveal key={i}>
+            <section className="px-6 py-8 md:px-12 lg:px-20">
+              <div className="w-full md:w-2/4 mx-auto">
+                <TextSection section={section} />
+              </div>
+            </section>
+          </BlurReveal>
         )
       })}
 
-      {/* ── Footer ───────────────────────────────────────────────── */}
+      {/* -- Footer -------------------------------------------------- */}
       <footer className="px-6 py-24 md:px-12 lg:px-20 flex items-end justify-between">
-        <div className="flex items-center gap-6">
-          <a href="https://x.com/" className="type-body hover:opacity-60 transition-opacity">
+          <div className="flex items-center gap-4">
+          <a href="https://x.com/Henryyinn" target="_blank" rel="noopener noreferrer" className="type-label hover:opacity-60 transition-opacity">
             X
           </a>
-          <a href="mailto:" className="type-body hover:opacity-60 transition-opacity">
-            EMAIL
+          <a href="https://www.linkedin.com/in/henrysyin/" target="_blank" rel="noopener noreferrer" className="type-label hover:opacity-60 transition-opacity">
+            LinkedIn
+          </a>
+          <a href="mailto:henrysih@usc.edu" className="type-label hover:opacity-60 transition-opacity">
+            Email
           </a>
         </div>
-        <p className="type-body">2026 HENRY YIN.</p>
+        <p className="type-label">2026 HENRY YIN.</p>
       </footer>
     </main>
   )

@@ -5,11 +5,11 @@ export default function MusingCard({ musing }: { musing: Musing }) {
   return (
     <Link
       href={`/musings/${musing.slug}`}
-      className="flex flex-col gap-1 -mx-3 px-3 py-4 hover:bg-[#f5f5f5] transition-colors"
+      className="flex flex-col gap-1.5 -mx-3 px-3 py-4 hover:bg-[#f5f5f5] transition-colors"
     >
       <p className="type-label">{musing.title}</p>
       <p className="type-body">{musing.subtitle}</p>
-      <p className="type-caption">{musing.year}</p>
+      <p className="type-caption">{musing.date ?? musing.year}</p>
     </Link>
   )
 }
