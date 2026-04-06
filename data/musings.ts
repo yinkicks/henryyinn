@@ -65,10 +65,9 @@ export const musings: Musing[] = [
     body: [],
     sections: [
       {
-
+        heading: "Preface",
         bullets: [
           "A letter from the 15th century knight, Sir Thomas Lemuel Hawke, to his children before his death. A collection of reflections and guiding principles for living a virtuous and meaningful life.",
-    
         ],
       },
       {
